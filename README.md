@@ -1,10 +1,21 @@
-MvcThrottle
-===========
+MvcThrottle2
+============
 
-[![Build status](https://ci.appveyor.com/api/projects/status/xdyd4xb4bihivdjt?svg=true)](https://ci.appveyor.com/project/stefanprodan/mvcthrottle)
-[![NuGet](https://img.shields.io/nuget/v/MvcThrottle.svg)](https://www.nuget.org/packages/MvcThrottle)
+[![NuGet](https://img.shields.io/nuget/v/MvcThrottle2.svg)](https://www.nuget.org/packages/MvcThrottle2)
 
-With MvcThrottle you can protect your site from aggressive crawlers, scraping tools or unwanted traffic spikes originated from the same location by limiting the rate of requests that a client from the same IP can make to your site or to specific routes.
+Forked from https://github.com/stefanprodan/mvcthrottle and the functionality is unchanged from that package.
+
+Actions taken:
+* Updated to .NET 4.8.1
+* Removed unused references with Resharper (this removed packages with a moderate vulnerability)
+* Updated remaining packages
+* Had Rehsharper convert all vars to explicit types (using var is bad coding practice)
+* Had Claude write some unit tests.
+* Changed License.md to License.txt
+
+Original readme below:
+
+With MvcThrottle2 you can protect your site from aggressive crawlers, scraping tools or unwanted traffic spikes originated from the same location by limiting the rate of requests that a client from the same IP can make to your site or to specific routes.
 
 You can set multiple limits for different scenarios like allowing an IP to make a maximum number of calls per second, per minute, per hour or per day. You can define these limits to address all requests made to your website or you can scope the limits to each Controller, Action or URL, with or without query string params.
 
@@ -96,7 +107,7 @@ public enum EndpointThrottlingType
 By default, when a client is rate limited a 429 HTTP status code is sent back along with <code>Retry-After</code> header. If you want to return a custom view instead of IIS error page you’ll need to implement your own ThrottlingFilter and override the <code>QuotaExceededResult</code> method.
 
 ``` cs
-public class MvcThrottleCustomFilter : MvcThrottle.ThrottlingFilter
+public class MvcThrottle2CustomFilter : MvcThrottle2.ThrottlingFilter
 {
     protected override ActionResult QuotaExceededResult(RequestContext context, string message, HttpStatusCode responseCode)
     {
@@ -111,7 +122,7 @@ public class MvcThrottleCustomFilter : MvcThrottle.ThrottlingFilter
 }
 ```
 
-I’ve created a view named RateLimited.cshtml located in the Views/Shared folder and using ViewBag.Message I am sending the error message to this view. Take a look at MvcThrottle.Demo project for the full implementation.
+I’ve created a view named RateLimited.cshtml located in the Views/Shared folder and using ViewBag.Message I am sending the error message to this view. Take a look at MvcThrottle2.Demo project for the full implementation.
 
 ### IP, Endpoint and Client White-listing
 
@@ -137,7 +148,7 @@ var throttleFilter = new ThrottlingFilter
 });
 ```
 
-The Demo project comes with a white-list of Google and Bing bot IPs, take at look at  [FilterConfig.cs](https://github.com/stefanprodan/MvcThrottle/blob/master/MvcThrottle.Demo/App_Start/FilterConfig.cs).
+The Demo project comes with a white-list of Google and Bing bot IPs, take at look at  [FilterConfig.cs](https://github.com/stefanprodan/MvcThrottle2/blob/master/MvcThrottle2.Demo/App_Start/FilterConfig.cs).
 
 ### IP and/or Endpoint custom rate limits
 
@@ -229,7 +240,7 @@ var throttleFilter = new ThrottlingFilter
 
 ### Storing throttle metrics 
 
-MvcThrottle stores all request data in-memory using ASP.NET Cache. If you want to change the storage to 
+MvcThrottle2 stores all request data in-memory using ASP.NET Cache. If you want to change the storage to 
 Velocity, MemCache or Redis, all you have to do is create your own repository by implementing the IThrottleRepository interface. 
 
 ``` cs
@@ -260,7 +271,7 @@ public interface IThrottleLogger
 
 Logging implementation example
 ``` cs
-public class MvcThrottleLogger : IThrottleLogger
+public class MvcThrottle2Logger : IThrottleLogger
 {
     public void Log(ThrottleLogEntry entry)
     {
