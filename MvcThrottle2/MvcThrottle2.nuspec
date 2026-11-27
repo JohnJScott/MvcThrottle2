@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <version>$version$</version>
@@ -6,15 +6,22 @@
     <owners>John J Scott</owners>
     <id>MvcThrottle2</id>
     <title>ASP.NET MVC Rate Limiter</title>
+    <license type="expression">MIT</license>
+    <readme>README.md</readme>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>MvcThrottle2 filter is designed for controlling the rate of requests that clients can make to a website based on IP address, request route, user-agent and client identity. You can set multiple limits for different scenarios like allowing an IP to make a maximum number of calls per second, per minute, per hour or per day. You can define these limits to address all requests made to your website or you can scope the limits to each Controller, Action or URL, with or without query string params.</description>
     <releaseNotes>If you are looking for the ASP.NET Core version please use AspNetCoreRateLimit package</releaseNotes>
     <copyright>Eternal Developments, LLC.</copyright>
     <tags>ASP.NET MVC, throttling, rate limits</tags>
     <projectUrl>https://github.com/JohnJScott/MvcThrottle2</projectUrl>
+    <repository type="git" url="https://github.com/JohnJScott/MvcThrottle2.git" />
     <language>en-US</language>
     <dependencies>
-      <dependency id="Microsoft.AspNet.Mvc" version="5.1.0" />
+      <dependency id="Microsoft.AspNet.Mvc" version="5.3.0" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="..\README.md" target="" />
+    <file src="..\LICENSE.txt" target="" />
+  </files>
 </package>
